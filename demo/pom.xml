@@ -19,7 +19,7 @@
         </dependency>
         <dependency>
             <groupId>doudou.com</groupId>
-            <artifactId>api-log</artifactId>
+            <artifactId>api-log-boot-starter</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
