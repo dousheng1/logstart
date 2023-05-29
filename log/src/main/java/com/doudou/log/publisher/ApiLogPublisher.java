@@ -1,12 +1,15 @@
 package com.doudou.log.publisher;
 
 
-import cn.hutool.extra.spring.SpringUtil;
 import com.doudou.log.annotation.ApiLog;
 import com.doudou.log.constant.EventConstant;
 import com.doudou.log.entity.LogApi;
 import com.doudou.log.event.ApiLogEvent;
 import com.doudou.log.utils.WebUtil;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -17,7 +20,10 @@ import java.util.Map;
  *
  * @author Chill
  */
-public class ApiLogPublisher {
+@Component
+public class ApiLogPublisher implements ApplicationContextAware {
+
+    private static ApplicationContext applicationContext;
 
     public static void publishEvent(String methodName, String methodClass, ApiLog apiLog, long time) {
         HttpServletRequest request = WebUtil.getRequest();
@@ -30,7 +36,11 @@ public class ApiLogPublisher {
         Map<String, Object> event = new HashMap<>(16);
         event.put(EventConstant.EVENT_LOG, logApi);
         event.put(EventConstant.EVENT_REQUEST, request);
-        SpringUtil.getApplicationContext().publishEvent(new ApiLogEvent(event));
+        applicationContext.publishEvent(new ApiLogEvent(event));
     }
 
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        ApiLogPublisher.applicationContext = applicationContext;
+    }
 }

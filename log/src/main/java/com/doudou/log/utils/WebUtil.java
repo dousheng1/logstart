@@ -191,7 +191,7 @@ public class WebUtil extends org.springframework.web.util.WebUtils {
         String queryString = request.getQueryString();
         if (StrUtil.isNotBlank(queryString)) {
             // TODO: 2023/5/29 lll
-//            return new String(queryString.getBytes(Charsets.ISO_8859_1), Charsets.UTF_8).replaceAll("&amp;", "&").replaceAll("%22", "\"");
+            return new String(queryString.getBytes("ISO_8859_1")).replaceAll("&amp;", "&").replaceAll("%22", "\"");
         }
         return getRequestStr(request, getRequestBytes(request));
     }

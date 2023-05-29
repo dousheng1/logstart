@@ -2,6 +2,7 @@ package com.doudou.log.config;
 
 import com.doudou.log.utils.WebUtil;
 import lombok.Getter;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Getter
 @Configuration
+@MapperScan({"com.doudou.log.**.mapper"})
 public class ServerInfo implements SmartInitializingSingleton {
 	private final ServerProperties serverProperties;
 	private String hostName;

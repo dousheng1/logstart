@@ -38,15 +38,12 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.8.7</version>
-            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
-            <version>3.4.0</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
@@ -61,7 +58,6 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <scope>compile</scope>
-<!--            <optional>true</optional>-->
         </dependency>
 
 
