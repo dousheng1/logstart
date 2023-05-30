@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.WebRequest;
 
@@ -12,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
+@Component
 public class DDErrorAttributes extends DefaultErrorAttributes {
 
 	@Override
@@ -19,7 +21,7 @@ public class DDErrorAttributes extends DefaultErrorAttributes {
 		String requestUri = this.getAttr(webRequest, "javax.servlet.error.request_uri");
 		Integer status = this.getAttr(webRequest, "javax.servlet.error.status_code");
 		Throwable error = getError(webRequest);
-		Map<String, Object> map = new HashMap<>(2);
+		Map<String, Object> map = new HashMap<>(3);
 		if (error == null) {
 			log.error("URL:{} error status:{}", requestUri, status);
 			map.put("data", status);
