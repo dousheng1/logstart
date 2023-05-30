@@ -1,9 +1,14 @@
 package com.doudou.log.aspect;
 
+import cn.hutool.core.util.URLUtil;
 import com.doudou.log.annotation.ApiLog;
 import com.doudou.log.publisher.ApiLogPublisher;
+import com.doudou.log.publisher.ErrorLogPublisher;
+import com.doudou.log.utils.WebUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 
@@ -31,7 +36,14 @@ public class ApiLogAspect {
         long time = System.currentTimeMillis() - beginTime;
         //记录日志
         ApiLogPublisher.publishEvent(methodName, className, apiLog, time);
+//        ErrorLogPublisher.publishEvent();
         return result;
     }
 
+    @AfterThrowing(value = "@annotation(apiLog)", throwing = "e")
+    public void afterThrowing(JoinPoint joinPoint, Exception e, ApiLog apiLog) {
+//        String className = joinPoint.getTarget().getClass().getName();
+//        String methodName = joinPoint.getSignature().getName();
+        ErrorLogPublisher.publishEvent(e, URLUtil.getPath(WebUtil.getRequest().getRequestURI()));
+    }
 }
