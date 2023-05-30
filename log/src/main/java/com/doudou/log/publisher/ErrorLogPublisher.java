@@ -12,11 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * 异常信息事件发送
- *
- * @author Chill
- */
 public class ErrorLogPublisher {
 
 	public static void publishEvent(Throwable error, String requestUri) {
