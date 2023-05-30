@@ -1,7 +1,6 @@
 package com.doudou.log.config;
 
 import com.doudou.log.aspect.ApiLogAspect;
-import com.doudou.log.error.DDErrorAttributes;
 import com.doudou.log.event.ApiLogListener;
 import com.doudou.log.event.ErrorLogListener;
 import com.doudou.log.publisher.ApiLogPublisher;
@@ -23,7 +22,7 @@ import org.springframework.context.annotation.Import;
  * @author Chill
  */
 @Configuration
-@Import({ServerInfo.class, ApiLogPublisher.class, ErrorLogPublisher.class, DDErrorAttributes.class})
+@Import({ServerInfo.class, ApiLogPublisher.class, ErrorLogPublisher.class})
 @ConditionalOnWebApplication
 public class LogToolAutoConfiguration {
 
