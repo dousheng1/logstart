@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.doudou.log.config.LogToolAutoConfiguration
+  com.doudou.log.config.LogToolAutoConfiguration,\
+  com.doudou.log.aspect.RequestLogAspect
